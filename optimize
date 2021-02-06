@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ "$1" == "-c" || "$1" == "--clear" ]]; then
+    echo
+    echo "Clear all cached events and listeners"
+    php artisan event:clear
+
+    echo
+    echo "Remove the cached bootstrap file"
+    php artisan optimize:clear
+
+    echo
+    echo "Remove other caches files"
+    ls storage/framework/cache/hydrators/* | grep -v .gitkeep | xargs rm -f
+    ls storage/framework/cache/vars/* | grep -v .gitkeep | xargs rm -f
+    rm -rfv storage/framework/cache/metadata
+    rm -rfv storage/framework/cache/queries
+    rm -rfv storage/framework/cache/results
+else
+    echo
+    echo "Cache the framework bootstrap files"
+    php artisan optimize
+
+    echo
+    echo "Compile all of the application's Blade templates"
+    php artisan view:cache
+
+    echo
+    echo "Discover and cache the application's events and listeners"
+    php artisan event:cache
+fi

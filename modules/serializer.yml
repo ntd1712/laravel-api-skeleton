@@ -1,0 +1,54 @@
+serializer:
+  handlers:
+    datetime:
+      id: 'JMS\Serializer\Handler\DateHandler'
+      default_format: 'Y-m-d\TH:i:sP'
+      default_timezone: '%app.timezone%'
+      xml_cdata: true
+    object:
+      id: 'JMS\Serializer\Handler\StdClassHandler'
+    array_collection:
+      id: 'JMS\Serializer\Handler\ArrayCollectionHandler'
+      initialize_excluded: true
+    iterator:
+      id: 'JMS\Serializer\Handler\IteratorHandler'
+  subscribers:
+    doctrine_proxy:
+      id: 'EventDispatcher\Subscriber\DoctrineProxySubscriber'
+      skip_virtual_type_init: true
+      initialize_excluded: false
+  object_constructor:
+    doctrine:
+      id: 'JMS\Serializer\Construction\DoctrineObjectConstructor'
+      fallback_strategy: 'null'
+  property_naming:
+    id: 'JMS\Serializer\Naming\IdenticalPropertyNamingStrategy'
+  metadata:
+    cache: 'doctrine'
+    debug: true
+    file_cache:
+      dir: '%cache_path%'
+    auto_detection: true
+    directories:
+#      any-name:
+#        namespace_prefix: 'My\FooBundle'
+#        path: '@MyFooBundle/Resources/config/serializer'
+  manager_registry:
+  default_context:
+    serialization:
+      serialize_null: true
+#      version:
+#      attributes: {}
+#      groups: ['Default']
+      enable_max_depth_checks: true
+    deserialization:
+#      version:
+#      attributes: {}
+#      groups: ['Default']
+#      enable_max_depth_checks: true
+  visitors:
+#    json_serialization:
+#      options: 1024
+#    json_deserialization:
+#      options: 0
+#      depth: 512

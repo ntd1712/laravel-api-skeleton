@@ -41,6 +41,8 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:api',
+            'cache.headers:etag',
+            'convert.case:pascal',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -62,5 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'convert.case' => \Chaos\Support\Middleware\LaravelConvertCaseMiddleware::class,
     ];
 }

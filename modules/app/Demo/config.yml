@@ -1,0 +1,29 @@
+#modules:
+#  demo:
+#    foo: 'bar'
+
+doctrine:
+  entity_managers:
+    mysql:
+      connection: 'mysql'
+      metadata_cache_driver:
+        type: 'array'
+      mappings:
+        Chaos\Modules\Demo\Entity:
+          mapping: true
+          type: 'annotation'
+          dir: '%base_path%/modules/app/Demo/Entity'
+          alias: 'Demo'
+          use_simple_annotation_reader: false
+  connections:
+    mysql:
+      dbname: 'blog_demo'
+      host: '127.0.0.1'
+      port: 3306
+      user: 'root'
+      password:
+      charset: 'utf8'
+      unix_socket:
+      driver: 'mysqli'
+      schema_filter:
+      driverOptions: {}

@@ -1,0 +1,13 @@
+#modules:
+#  mongo:
+#    foo: 'bar'
+
+doctrine_mongodb:
+  document_managers:
+    mongodb:
+      mappings:
+        Chaos\Modules\Mongo\Document:
+          mapping: true
+          type: 'annotation'
+          dir: '%base_path%/modules/app/Mongo/Document'
+          alias: 'Mongo'
