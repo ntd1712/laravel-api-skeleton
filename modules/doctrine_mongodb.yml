@@ -1,0 +1,20 @@
+doctrine_mongodb:
+  document_managers:
+    mongodb:
+      connection: 'mongodb'
+      database: 'default'
+      metadata_cache_driver:
+        type: 'array'
+  connections:
+    mongodb:
+      server: 'mongodb://localhost:27017'
+      options: {}
+      driver_options:
+        typeMap: {root: 'array', document: 'array'}
+  proxy_namespace: 'MongoDBODMProxies'
+  proxy_dir: '%cache_path%/proxies'
+  auto_generate_proxy_classes: 2
+  hydrator_namespace: 'DoctrineHydrators'
+  hydrator_dir: '%cache_path%/hydrators'
+  auto_generate_hydrator_classes: 1
+  default_document_manager: 'mongodb'

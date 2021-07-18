@@ -1,0 +1,36 @@
+doctrine:
+  entity_managers:
+    default:
+      connection: 'default'
+      result_cache_driver:
+        type: 'array'
+#        type: 'filesystem'
+#        directory: '%cache_path%/results'
+      query_cache_driver:
+        type: 'array'
+#        type: 'filesystem'
+#        directory: '%cache_path%/queries'
+      metadata_cache_driver:
+        type: 'array'
+#        type: 'filesystem'
+#        directory: '%cache_path%/metadata'
+      dql:
+        string_functions:
+          JSON_EXTRACT: 'Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonExtract'
+  connections:
+    default:
+      dbname: '%db.database%'
+      host: '%db.host%'
+      port: '%db.port%'
+      user: '%db.username%'
+      password: '%db.password%'
+      charset: '%db.charset%'
+      unix_socket: '%db.unix_socket%'
+      driver: 'pdo_mysql'
+      schema_filter:
+  proxy_interface_name: 'Doctrine\Persistence\Proxy'
+  proxy_namespace: 'DoctrineProxies'
+  proxy_dir: '%cache_path%/proxies'
+  auto_generate_proxy_classes: 2
+  default_entity_manager: 'default'
+  default_connection: 'default'
